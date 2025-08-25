@@ -1,0 +1,19 @@
+# Diccionario con los centros organizados por empresa
+CENTROS_EMPRESAS = {
+    "Salmones Aysen": [
+        "Teupa", "Lleuna", "Tutil", "Huenquillahue", "Raliguao", "Puyuhuapi", "Aldachildo", 
+        "Lamahue", "Milagro", "Cuem", "Curbita", "Lin Lin", "Huito", "Chulchuy", "Choen", "Halcones Chico"
+    ],
+    "Caleta Bay": [
+        "Caleta Martin", "Pucheguin", "Concheo 2", "Farellones", "Barquillo", "Punta Iglesias"
+    ],
+    "AquaChile": [
+         "Nevenka", "Lalanca", "Jesus 1", "Valverde 2", "Canal Luchin", "Canalad 2", "Jesus 9", 
+         "Jesus 5", "Cahueldao", "Pescadores", "Caleta Juarez", "Cuptana 4", "Gertrudis 2", 
+         "Francisco Sur", "Davis", "Tangbac", "Canalad 1", "Mauchil", "Jud", "Quetros 2", 
+         "Punta Ganso", "Pangal 3", "Paildad", "Martina", "Punta Porvenir", "Huapi"
+    ],
+    "Cermaq": [
+        "Acopio"
+    ]
+}

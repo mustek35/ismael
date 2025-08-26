@@ -1,0 +1,23 @@
+{
+    "openai_api_key": "sk-t8tObjZqWuWwKnBGw1zxHmZpNlC3MpPYCGv3aApKsJT3BlbkFJcgzCaAPyrXujUY9Zj2MMs78E1Jz8gs3EejYqQPwFAA\n",
+    "email_address": "ismael@orcatecnologia.cl",
+    "email_password": "fytb lgbz gkht clsb",
+    "smtp_server": "smtp.gmail.com",
+    "imap_server": "imap.gmail.com",
+    "smtp_port": 587,
+    "assistant_id": "asst_RO6jvTXoyyu6WmwL6w9imlvF",
+    "technical_assistant_id": "asst_3iCMq8n0etmnIgzQQCsysuge",
+    "check_interval": 60,
+    "max_attempts": 10,
+    "wait_time": 10,
+    "temperature": 1.2,
+    "top_p": "1",
+    "test_recipient": "cespinoza@orcatecnologia.cl",
+    "remitentes_permitidos": [
+        "centralseguridadsay@salmonesaysen.cl",
+        "vigilancia2@aquachile.com",
+        "seguridad@caletabay.cl",
+        "cespinoza.cast@gmail.com",
+        "cespinoza@orcatecnologia.cl"
+    ]
+}

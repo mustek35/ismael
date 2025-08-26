@@ -672,72 +672,6 @@ class EmailAssistantGUI(QMainWindow):
         """Guardar centros (método de compatibilidad)"""
         return self.save_centers_to_json(self.centros_empresas)
         
-    def init_ui(self):
-        self.setWindowTitle("Asistente de Correo Electrónico - OrcaTech")
-        self.setGeometry(100, 100, 1400, 900)
-        
-        # Widget central
-        central_widget = QWidget()
-        self.setCentralWidget(central_widget)
-        
-        # Layout principal
-        main_layout = QVBoxLayout(central_widget)
-        
-        # Crear tabs
-        self.tab_widget = QTabWidget()
-        main_layout.addWidget(self.tab_widget)
-        
-        # Tabs
-        self.create_monitor_tab()
-        self.create_centers_tab()
-        self.create_config_tab()
-        self.create_test_tab()
-        self.create_logs_tab()
-        
-        # Status bar
-        self.statusBar().showMessage("Listo para iniciar")
-    
-    def load_config(self):
-        config = {}
-        for key, default_value in DEFAULT_CONFIG.items():
-            stored_value = self.settings.value(key, default_value)
-            if key == 'temperature':
-                try:
-                    if isinstance(stored_value, str):
-                        clean_value = stored_value.split('.')[0] + '.' + stored_value.split('.')[1][:2]
-                        config[key] = float(clean_value)
-                    else:
-                        config[key] = float(stored_value)
-                    if config[key] < 0 or config[key] > 2:
-                        config[key] = 1.2
-                except (ValueError, IndexError, AttributeError):
-                    config[key] = 1.2
-            else:
-                config[key] = stored_value
-        return config
-    
-    def load_centers(self):
-        """Cargar centros desde configuración persistente"""
-        try:
-            centers_json = self.settings.value('centros_empresas', '')
-            if centers_json:
-                return json.loads(centers_json)
-            else:
-                return DEFAULT_CENTROS_EMPRESAS.copy()
-        except (json.JSONDecodeError, TypeError):
-            return DEFAULT_CENTROS_EMPRESAS.copy()
-    
-    def save_centers(self):
-        """Guardar centros en configuración persistente"""
-        try:
-            centers_json = json.dumps(self.centros_empresas)
-            self.settings.setValue('centros_empresas', centers_json)
-            self.settings.sync()
-            return True
-        except Exception as e:
-            self.add_log(f"❌ Error guardando centros: {str(e)}", "ERROR")
-            return False
-        
     def create_monitor_tab(self):
         monitor_widget = QWidget()
         layout = QVBoxLayout(monitor_widget)
@@ -1597,28 +1531,6 @@ class EmailAssistantGUI(QMainWindow):
         self.stop_button.setEnabled(False)
         self.statusBar().showMessage("🔴 Asistente detenido")
         self.add_log("⏹️ Asistente de correo detenido", "INFO")
-    
-    def add_log(self, message, level="INFO"):
-        timestamp = datetime.now().strftime('%H:%M:%S')
-        
-        colors = {
-            "INFO": "#ffffff",
-            "DEBUG": "#cccccc", 
-            "ERROR": "#ff6b6b",
-            "SUCCESS": "#51cf66"
-        }
-        
-        color = colors.get(level, "#ffffff")
-        formatted_message = f'<span style="color: {color}">[{timestamp}] {message}</span>'
-        
-        self.log_display.append(formatted_message)
-        
-        detailed_message = f"[{timestamp}] [{level}] {message}"
-        self.detailed_logs.append(detailed_message)
-        
-        if hasattr(self, 'auto_scroll_checkbox') and self.auto_scroll_checkbox.isChecked():
-            self.log_display.moveCursor(QTextCursor.MoveOperation.End)
-            self.detailed_logs.moveCursor(QTextCursor.MoveOperation.End)
     
     def add_email_to_table(self, email_data):
         row_count = self.email_table.rowCount()
